@@ -15,7 +15,6 @@ public class UserService {
 
     public UserService(S3StorageAdapter s3StorageAdapter) {
         this.s3StorageAdapter = s3StorageAdapter;
-        this.users = new HashMap<>();
     }
 
     public User save(UserDTORequest userDTORequest) throws IOException {
