@@ -6,6 +6,7 @@ import com.aws.avatar.model.User;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -18,7 +19,7 @@ public class UserService {
     public User save(UserDTORequest userDTORequest) throws IOException {
 
         String urlAvatarCallback = s3StorageAdapter
-                .uploadFile(userDTORequest.file().getBytes(), userDTORequest.file().getName(), userDTORequest.file().getContentType());
+                .uploadFile(userDTORequest.file().getBytes(), userDTORequest.file().getName() + UUID.randomUUID(), userDTORequest.file().getContentType());
 
         User user = User.from(userDTORequest.name(), urlAvatarCallback);
         return user;
